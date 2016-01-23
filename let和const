@@ -75,7 +75,7 @@ ES6 新增了`let`命令，用來聲明變數。用法類似於`var`，但是所
 `let`很適合使用於`for`迴圈的計數器
 `for (let i = 0; i < arr.length; i++) {}`
 
-###不存在變量提升
+###不存在變數提升
 `let`不像`var`會有“變數提升”。所以變數的使用一定要在宣告之後。
 
 	console.log(foo); // ReferenceError
@@ -131,7 +131,7 @@ ES6 規定，如果區域中存在`let`和`const`命令
 		console.log(n); // 5
 	}
 
-內層作用域可以定義外層作用域的同名變量。
+內層作用域可以定義外層作用域的同名變數。
 
 	{ { { { 
 	  let insane =  'Hello World' ; 

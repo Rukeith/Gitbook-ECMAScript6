@@ -7,24 +7,24 @@ ES6允許寫成下面這樣。
 
 	var [a, b, c] = [1, 2, 3];
 
-本質上，這種寫法屬於“模式匹配”，只要等號兩邊的模式相同，左邊的變量就會被賦予對應的值。下面是一些使用嵌套數組進行解構的例子。
+本質上，這種寫法屬於“模式匹配”，只要等號兩邊的模式相同，左邊的變數就會被賦予對應的值。下面是一些使用嵌套陣列進行解構的例子。
 
 	let [foo, [[bar], baz]] = [1, [[2], 3]];
 	foo // 1
 	bar // 2
 	baz // 3
-	
+
 	let [ , , third] = ["foo", "bar", "baz"];
 	third // "baz"
-	
+
 	let [x, , y] = [1, 2, 3];
 	x // 1
 	y // 3
-	
+
 	let [head, ...tail] = [1, 2, 3, 4];
 	head // 1
 	tail // [2, 3, 4]
-	
+
 	let [x, y, ...z] = ['a'];
 	x // "a"
 	y // undefined
@@ -38,11 +38,11 @@ ES6允許寫成下面這樣。
 以上兩種情況都不成功，`foo`的值會等於`undefined`。
 
 另一種情況是不完全的解構，亦即只匹配一部份的資料。
-	
+
 	let [x, y] = [1, 2, 3];
 	x // 1
 	y // 2
-	
+
 	let [a, [b], d] = [1, [2, 3], 4];
 	a // 1
 	b // 2
@@ -76,7 +76,7 @@ ES6允許寫成下面這樣。
 			[a, b] = [b, a + b];
 		}
 	}
-	
+
 	var [first, second, third, fourth, fifth, sixth] = fibs();
 	sixth // 5
 
@@ -87,7 +87,7 @@ ES6允許寫成下面這樣。
 
 	var [foo = true] = [];
 	foo // true
-	
+
 	[x, y = 'b'] = ['a'] // x='a', y='b'
 	[x, y = 'b'] = ['a', undefined] // x='a', y='b'
 
@@ -95,7 +95,7 @@ ES6允許寫成下面這樣。
 
 	var [x = 1] = [undefined];
 	x // 1
-	
+
 	var [x = 1] = [null];
 	x // null
 
@@ -118,7 +118,7 @@ ES6允許寫成下面這樣。
 	var { bar, foo } = { foo: "aaa", bar: "bbb" };
 	foo // "aaa"
 	bar // "bbb"
-	
+
 	var { baz } = { foo: "aaa", bar: "bbb" };
 	baz // undefined
 
@@ -126,7 +126,7 @@ ES6允許寫成下面這樣。
 
 	var { foo: baz } = { foo: "aaa", bar: "bbb" };
 	baz // "aaa"
-	
+
 	let obj = { first: 'hello', last: 'world' };
 	let { first: f, last: l } = obj;
 	f // 'hello'
@@ -146,13 +146,13 @@ ES6允許寫成下面這樣。
 	    { y: "World" }
 	  ]
 	};
-	
+
 	var { p: [x, { y }] } = obj;
 	x // "Hello"
 	y // "World"
 
 這時的`p`是模式，不是變數，因此不會賦值
-	
+
 	var node = {
 	  loc: {
 	    start: {
@@ -161,7 +161,7 @@ ES6允許寫成下面這樣。
 	    }
 	  }
 	};
-	
+
 	var { loc: { start: { line }} } = node;
 	line // 1
 	loc  // error: loc is undefined
@@ -171,9 +171,9 @@ ES6允許寫成下面這樣。
 
 	let obj = {};
 	let arr = [];
-	
+
 	({ foo: obj.prop, bar: arr[0] } = { foo: 123, bar: true });
-	
+
 	obj // {prop:123}
 	arr // [true]
 
@@ -181,18 +181,18 @@ ES6允許寫成下面這樣。
 
 	var {x = 3} = {};
 	x // 3
-	
+
 	var {x, y = 5} = {x: 1};
 	x // 1
 	y // 5
-	
+
 	var { message: msg = "Something went wrong" } = {};
 	msg // "Something went wrong"
 
 如果要將一個已經宣告的變數用於解構賦值，要非常小心
 
 	// 錯誤的寫法
-	
+
 	var x;
 	{x} = {x: 1};
 	// SyntaxError: syntax error
@@ -222,7 +222,7 @@ ES6允許寫成下面這樣。
 
 	let {toString: s} = 123;
 	s === Number.prototype.toString // true
-	
+
 	let {toString: s} = true;
 	s === Boolean.prototype.toString // true
 
@@ -237,7 +237,7 @@ ES6允許寫成下面這樣。
 	function add([x, y]){
 	  return x + y;
 	}
-	
+
 	add([1, 2]) // 3
 
 上面程式碼中，`add`的參數實際上不是一個陣列，而是通過解構得到的變數`x`和`y`。
@@ -246,7 +246,7 @@ ES6允許寫成下面這樣。
 	function move({x = 0, y = 0} = {}) {
 	  return [x, y];
 	}
-	
+
 	move({x: 3, y: 8}); // [3, 8]
 	move({x: 3}); // [3, 0]
 	move({}); // [0, 0]
@@ -271,7 +271,7 @@ ES6允許寫成下面這樣。
 		var { o: ({ p: p }) } = { o: { p: 2 } };
 
 2. 函數參數。也屬於變數宣告，因此不能有圓括號
-	
+
 		// 錯誤
 		function f([(z)]) { return z; }
 
@@ -300,14 +300,14 @@ ES6允許寫成下面這樣。
 函數只能返回一個值，如果要返回多個，只能將它們放在陣列或物件裡。
 
 		// 返回陣列
-		
+
 		function example() {
 		  return [1, 2, 3];
 		}
 		var [a, b, c] = example();
-		
+
 		// 返回物件
-		
+
 		function example() {
 		  return {
 		    foo: 1,
@@ -322,7 +322,7 @@ ES6允許寫成下面這樣。
 		// 參數是一組有次序的值
 		function f([x, y, z]) { ... }
 		f([1, 2, 3])
-		
+
 		// 參數是一組無次序的值
 		function f({x, y, z}) { ... }
 		f({z: 3, y: 2, x: 1})
@@ -350,9 +350,9 @@ ES6允許寫成下面這樣。
 		  status: "OK",
 		  data: [867, 5309]
 		}
-		
+
 		let { id, status, data: number } = jsonData;
-		
+
 		console.log(id, status, number)
 		// 42, OK, [867, 5309]
 
@@ -362,7 +362,7 @@ ES6允許寫成下面這樣。
 		var map = new Map();
 		map.set('first', 'hello');
 		map.set('second', 'world');
-		
+
 		for (let [key, value] of map) {
 		  console.log(key + " is " + value);
 		}
@@ -373,7 +373,7 @@ ES6允許寫成下面這樣。
 		for (let [key] of map) {
 		  // ...
 		}
-		
+
 		// 獲取 key value
 		for (let [,value] of map) {
 		  // ...
@@ -387,7 +387,7 @@ ES6允許寫成下面這樣。
 -
 
 # 字串的強化
-ES6加強了對Unicode的支持，並且擴展了字符串對象。
+ES6加強了對Unicode的支持，並且擴展了字串物件。
 
 ## 字串的 Unicode 表示法
 JavaScript 允許採用`\uxxxx`形式表示一個字符，其中"xxxx"表示字符的碼點。
@@ -398,7 +398,7 @@ JavaScript 允許採用`\uxxxx`形式表示一個字符，其中"xxxx"表示字�
 
 	"\uD842\uDFB7"
 	// "𠮷"
-	
+
 	"\u20BB7"
 	// " 7"
 
@@ -408,17 +408,17 @@ ES6對這一點做出了改進，只要將碼點放入大括號，就能正確�
 
 	"\u{20BB7}"
 	// "𠮷"
-	
+
 	"\u{41}\u{42}\u{43}"
 	// "ABC"
-	
-	let hello =  123 ; 
+
+	let hello =  123 ;
 	hell\u { 6F } // 123
-	 
+
 	'\u{1F680}'  ===  '\uD83D\uDE80'
 	// true
 
-上面代碼中，最後一個例子表明，大括號表示法與四字節的 UTF-16 編碼是等價的。
+上面代碼中，最後一個例子代表，大括號表示法與四字節的 UTF-16 編碼是等價的。
 
 有了這種表示法之後，JavaScript共有6種方法可以表示一個字符。
 
@@ -432,14 +432,14 @@ ES6對這一點做出了改進，只要將碼點放入大括號，就能正確�
 JavaScript 內部，字符是以 UTF-16，每個字符固定式兩個字節。對於需要4個字節儲存的字符（Unicode 碼大於 0xFFFF 的字節），JavaScript 會認為他們是兩個字符。
 
 	var s = "𠮷";
-	
+
 	s.length // 2
 	s.charAt(0) // ''
 	s.charAt(1) // ''
 	s.charCodeAt(0) // 55362
 	s.charCodeAt(1) // 57271
 
-上面代碼中"𠮷"的碼點是 0x20BB7，UTF-16 編碼為 0xD842 0xDFB7（十進制為55362 57271），需要4個字節儲存。對於這種4個字節的字符，JavaScript不能正確處理，字符串長度會誤判為2，而且charAt方法無法讀取整個字符，charCodeAt方法只能分別返回前兩個字節和後兩個字節的值。
+上面代碼中"𠮷"的碼點是 0x20BB7，UTF-16 編碼為 0xD842 0xDFB7（十進制為55362 57271），需要4個字節儲存。對於這種4個字節的字符，JavaScript不能正確處理，字串長度會誤判為2，而且charAt方法無法讀取整個字符，charCodeAt方法只能分別返回前兩個字節和後兩個字節的值。
 
 ES6 提供了`codePointAt`方法，能夠正確處理4個字節儲存的字符，返回一個字符的碼點。
 
@@ -450,16 +450,16 @@ ES6 提供了`codePointAt`方法，能夠正確處理4個字節儲存的字符�
 
 	s.charCodeAt(2) // 97
 
-`codePointAt`方法的參數，是字符在字符串中的位置（從0開始）。上面代碼中，JavaScript將"𠮷a"視為三個字符，`codePointAt`方法在第一個字符上，正確地識別了"吉"，返回了它的十進制碼點 134071（即十六進制的`20BB7`）。在第二個字符（即"𠮷"的後兩個字節）和第三個字符“a”上，`codePointAt`方法的結果與`charCodeAt`方法相同。
+`codePointAt`方法的參數，是字符在字串中的位置（從0開始）。上面代碼中，JavaScript將"𠮷a"視為三個字符，`codePointAt`方法在第一個字符上，正確地識別了"吉"，返回了它的十進制碼點 134071（即十六進制的`20BB7`）。在第二個字符（即"𠮷"的後兩個字節）和第三個字符“a”上，`codePointAt`方法的結果與`charCodeAt`方法相同。
 
 
 
 ## `String.fromCodePoint()`
 ## 字串的遍歷器接口
-ES6 替字串添加了遍歷器接口，使得字符串可以被`for...of`循環遍歷。
+ES6 替字串添加了遍歷器接口，使得字串可以被`for...of`循環遍歷。
 
 	for (let codePoint of 'foo') {
-		console.log(codePoint) 
+		console.log(codePoint)
 	}
 	// "f"
 	// "o"
@@ -468,27 +468,27 @@ ES6 替字串添加了遍歷器接口，使得字符串可以被`for...of`循環
 這個遍歷器最大的優點是可以識別大於`0xFFFF`的碼點，傳統的`for`循環無法識別這樣的碼點。
 
 	var text = String.fromCodePoint(0x20BB7);
-	
+
 	for (let i = 0; i < text.length; i++) {
-	  console.log(text[i]); 
+	  console.log(text[i]);
 	}
 	// " "
 	// " "
-	 
-	for (let i of text) { 
-	  console.log(i); 
+
+	for (let i of text) {
+	  console.log(i);
 	}
 	// "𠮷"
 
 ## `at()`
-ES5對字符串對象提供charAt方法，返回字符串給定位置的字符。該方法不能識別碼點大於`0xFFFF`的字符。
+ES5對字串物件提供charAt方法，返回字串給定位置的字符。該方法不能識別碼點大於`0xFFFF`的字符。
 
 	"abc".charAt(0) // "a"
 	"吉".charAt(0) // "\uD842"
 
 上面代碼中，`charAt`方法返回的是 UTF-16 編碼的第一個字節，實際上是無法顯示的。
 
-ES7 提供了字符串實例的`at`方法，可以識別 Unicode 編號大於`0xFFFF`的字符，返回正確的字符。Chrome 瀏覽器已經支持該方法。
+ES7 提供了字串實例的`at`方法，可以識別 Unicode 編號大於`0xFFFF`的字符，返回正確的字符。Chrome 瀏覽器已經支持該方法。
 
 	"abc".at(0) // "a"
 	"吉".at(0) // "吉"
