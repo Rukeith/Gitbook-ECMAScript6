@@ -172,7 +172,7 @@ ES6 規定，如果區域中存在`let`和`const`命令
 	a.length = 0; // 可執行
 	a = ["Dave"]; // 報錯
 
-如果真的想將對象凍結，應該使用Object.freeze方法。
+如果真的想將物件凍結，應該使用Object.freeze方法。
 
 	const foo = Object.freeze({}); 
 	foo.prop = 123; //不起作用
